@@ -1,19 +1,32 @@
 import PropTypes from "prop-types";
-import RecipeItem from "../RecipeItem/RecipeItem";
-import { List } from "./RecipeList.styled";
+import Difficulty from "../Difficulty/Difficulty";
 
-const RecipeList = ({ recipes }) => {
+import { Card, Image, Title, Description, Time } from "./RecipeItem.styled";
+
+const RecipeItem = ({ recipe }) => {
   return (
-    <List>
-      {recipes.map((recipe) => (
-        <RecipeItem key={recipe.id} recipe={recipe} />
-      ))}
-    </List>
+    <Card $hard={recipe.difficulty === 3}>
+      <Image src={recipe.image} alt={recipe.title} />
+
+      <Title>{recipe.title}</Title>
+
+      <Description>{recipe.description}</Description>
+
+      <Time>Час приготування: {recipe.time}</Time>
+
+      <Difficulty difficulty={recipe.difficulty} />
+    </Card>
   );
 };
 
-RecipeList.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+RecipeItem.propTypes = {
+  recipe: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    difficulty: PropTypes.oneOf([0, 1, 3]).isRequired,
+  }).isRequired,
 };
 
-export default RecipeList;
+export default RecipeItem;

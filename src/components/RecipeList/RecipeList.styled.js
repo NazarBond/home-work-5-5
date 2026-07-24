@@ -1,19 +1,9 @@
-import PropTypes from "prop-types";
-import RecipeItem from "../RecipeItem/RecipeItem";
-import { List } from "./RecipeList.styled";
+import styled from "styled-components";
 
-const RecipeList = ({ recipes }) => {
-  return (
-    <List>
-      {recipes.map((recipe) => (
-        <RecipeItem key={recipe.id} recipe={recipe} />
-      ))}
-    </List>
-  );
-};
-
-RecipeList.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-export default RecipeList;
+export const List = styled.ul`
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+`;
