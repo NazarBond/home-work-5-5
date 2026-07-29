@@ -1,19 +1,16 @@
-import PropTypes from "prop-types";
-import RecipeItem from "../RecipeItem/RecipeItem";
-import { List } from "./RecipeList.styled";
+import Difficulty from "../Difficulty/Difficulty";
+import { Card, Image, Title, Description, Time } from "./RecipeItem.styled";
 
-const RecipeList = ({ recipes }) => {
+const RecipeItem = ({ recipe }) => {
   return (
-    <List>
-      {recipes.map((recipe) => (
-        <RecipeItem key={recipe.id} recipe={recipe} />
-      ))}
-    </List>
+    <Card>
+      <Image src={recipe.image} alt={recipe.name} />
+      <Title>{recipe.name}</Title>
+      <Description>{recipe.description}</Description>
+      <Time>{recipe.time} хв</Time>
+      <Difficulty difficulty={recipe.difficulty} />
+    </Card>
   );
 };
 
-RecipeList.propTypes = {
-  recipes: PropTypes.array.isRequired,
-};
-
-export default RecipeList;
+export default RecipeItem;
